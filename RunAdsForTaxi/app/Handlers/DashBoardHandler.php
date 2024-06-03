@@ -151,7 +151,7 @@ class DashBoardHandler
                 {
                     foreach($vehicles as $vehicle)
                     {
-                        if($item->taxi_id == $vehicle->id)
+                        if($item->vehicle_id == $vehicle->id)
                         {
                             $dataAllViewAdsVideo[] = $item;
                         }

@@ -22,7 +22,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
      */
     public function getVehicleCompanyParent(): Collection
     {
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->where(['parent_id'=> '0'])
             ->get(
                 array(
@@ -40,7 +40,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
      */
     public function getVehicleCompanySWithParentId(int $parendId): Collection
     {
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->where(['parent_id'=> $parendId])
             ->get();
     }
@@ -51,7 +51,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
      */
     public function insertVehicleCompanyParent(String $company_group): int
     {
-        return DB::table('taxi_company')->insertGetId([
+        return DB::table('company')->insertGetId([
             'company_group' => $company_group,
             'parent_id' => 0
         ]);
@@ -63,7 +63,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
      */
     public function insertVehicleCompanyChild(String $group_name, String $parentId): bool
     {
-        return DB::table('taxi_company')->insert([
+        return DB::table('company')->insert([
         'company_group' => $group_name,
         'parent_id' => $parentId
         ]);
@@ -76,7 +76,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
      */
     public function getVehicleCompanyWithGroupNameAndParentId(String $groupname, int $parentId): Collection
     {
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->where(['company_group' => $groupname])
             ->where(['parent_id' => $parentId])
             ->get();
@@ -90,7 +90,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
     public function updateCompanyGroupVehicleCompanyWithCompanyID(String $companyGroup, int $companyId): int
     {
 
-      return   DB::table('taxi_company')
+      return   DB::table('company')
             ->where(['company_id' => $companyId])
             ->update([
                 'company_group' => $companyGroup
@@ -103,7 +103,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
      */
     public function getParentIdWithCompanyId(int $companyId): Collection
     {
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->where(['company_id' => $companyId])
             ->get(['parent_id']);
     }
@@ -114,7 +114,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
      */
     public function getCompanyIdWithParentId(int $parentId): Collection
     {
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->where(['parent_id' => $parentId])
             ->get(['company_id']);
     }
@@ -142,7 +142,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
     }
     public function deleteVehicleCompanyWithCompanyID($companyId)
     {
-        return  DB::table('taxi_company')
+        return  DB::table('company')
             ->where(['company_id'=>$companyId])
             ->delete();
     }
@@ -155,7 +155,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
     {
         $nameGroup = trim(strtolower($nameGroup));
         $lengthGameGroup =  strlen($nameGroup);
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->whereRaw("LENGTH(TRIM(company_group)) = {$lengthGameGroup}")
             ->whereRaw( "LOWER(`company_group`) LIKE '{$nameGroup}'")
             ->get()->first();
@@ -167,7 +167,7 @@ class VehicleCompanyRepository extends BaseRepository implements IVehicleCompany
      */
     public function getDataVehicleCompanyWithCompanyId(int $companyId): mixed
     {
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->where(['company_id'=>$companyId,
             ])
             ->get()->first();

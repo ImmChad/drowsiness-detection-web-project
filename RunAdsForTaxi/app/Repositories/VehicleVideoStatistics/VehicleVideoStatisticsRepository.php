@@ -23,8 +23,8 @@ class VehicleVideoStatisticsRepository extends BaseRepository implements IVehicl
      */
     public function getVehicleVideoStatisticsIdWithVehicleId(int $vehicleId): Collection
     {
-        return DB::table('taxi_video_statistics')
-            ->where(['taxi_id' => $vehicleId])
+        return DB::table('detect_statistics')
+            ->where(['vehicle_id' => $vehicleId])
             ->get(['id']);
     }
 }

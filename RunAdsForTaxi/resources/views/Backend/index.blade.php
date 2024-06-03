@@ -21,6 +21,7 @@
 
     <link rel="stylesheet" href="{{ asset('backend/css/newStyle.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}"> --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <style>
@@ -221,12 +222,7 @@
         <div class="exit-pop-up-ads">
             <i class="fa-solid fa-x"></i>
         </div>
-
-
-
     </div>
-
-</body>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.js'></script>
@@ -246,4 +242,5 @@
             $('#all-table').DataTable();
         });
     </script>
+</body>
 </html>

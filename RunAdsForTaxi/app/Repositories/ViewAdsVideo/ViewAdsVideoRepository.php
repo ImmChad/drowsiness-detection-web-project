@@ -26,8 +26,8 @@ class ViewAdsVideoRepository extends BaseRepository implements IViewAdsVideoRepo
      */
     function getAllDataViewWithVehicleIDBetweenTime(int $vehicleId, String $start_time, String $end_time): Collection
     {
-        return DB::table('taxi_video_statistics')
-            ->where(['taxi_id'=>$vehicleId])
+        return DB::table('detect_statistics')
+            ->where(['vehicle_id'=>$vehicleId])
             ->whereBetween('human_time',[DB::raw("STR_TO_DATE('{$start_time}','%H:%i:%s %d/%m/%Y')"),DB::raw("STR_TO_DATE('{$end_time}','%H:%i:%s %d/%m/%Y')")])
             ->orderBy('id','ASC')
             ->get();
@@ -42,7 +42,7 @@ class ViewAdsVideoRepository extends BaseRepository implements IViewAdsVideoRepo
     function getDataAllViewAdsVideoWithCompanyHasVideoID(int $companyVideoId, String $startTime, String $end_time): Collection
     {
         // dump($company_video_id);
-        return DB::table('taxi_video_statistics')
+        return DB::table('detect_statistics')
             ->where(['company_video_id'=>$companyVideoId])
             ->whereBetween('human_time',[DB::raw("STR_TO_DATE('{$startTime}','%H:%i:%s %d/%m/%Y')"),DB::raw("STR_TO_DATE('{$end_time}','%H:%i:%s %d/%m/%Y')")])
             ->orderBy('id','ASC')
@@ -58,6 +58,6 @@ class ViewAdsVideoRepository extends BaseRepository implements IViewAdsVideoRepo
      */
     function insertViewAdsVideo(int $vehicleId, int $companyVidedId, int $humanType, String $now): bool
     {
-        return DB::statement("insert into `taxi_video_statistics` (`taxi_id`, `company_video_id`, `human_type`, `human_time`) values ({$vehicleId}, {$companyVidedId}, {$humanType},'{$now}')");
+        return DB::statement("insert into `detect_statistics` (`vehicle_id`, `company_video_id`, `human_type`, `human_time`) values ({$vehicleId}, {$companyVidedId}, {$humanType},'{$now}')");
     }
 }

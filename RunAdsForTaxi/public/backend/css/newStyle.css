@@ -218,10 +218,12 @@
 
 
 .purples {
-    font-family: "Rocher";
+    font-family: monospace;
     text-align: center;
     font-size: 30px;
     font-palette: --Reds;
+    font-weight: bold;
+    color: #0e5904;
 }
 
 
@@ -497,15 +499,15 @@
     overflow-y: scroll;
 }
 
-.table-parent-div::-webkit-scrollbar {
+*::-webkit-scrollbar {
     width: 8px;
 }
 
-.table-parent-div::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
     /* background-color: rgb(253, 162, 162); */
 }
 
-.table-parent-div::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
     background-color: #0e5904 ;
     border-radius: 6px;
 }

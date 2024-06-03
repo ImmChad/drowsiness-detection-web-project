@@ -9,5 +9,5 @@ class VehicleVideoStatistics extends Model
 {
     use HasFactory;
 
-    protected $table = "taxi_video_statistics";
+    protected $table = "detect_statistics";
 }

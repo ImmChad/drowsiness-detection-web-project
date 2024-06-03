@@ -245,7 +245,7 @@ class VehicleHandler
      */
     function checkExistVehicleForAdd(int $vehicleNum = -1): bool
     {
-        $dataVehicle = DB::table('taxi')
+        $dataVehicle = DB::table('vehicle')
             ->whereRaw("LOWER(TRIM(`vehicle_num`)) = '{$vehicleNum}'")
             ->get()->first();
         return isset($dataVehicle);

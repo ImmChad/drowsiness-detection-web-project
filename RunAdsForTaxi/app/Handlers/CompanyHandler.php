@@ -229,7 +229,7 @@ class CompanyHandler
                     }
                 }
 
-                DB::table('taxi_company')
+                DB::table('company')
                     ->where(['company_id' => $company_id])
                     ->delete();
             }

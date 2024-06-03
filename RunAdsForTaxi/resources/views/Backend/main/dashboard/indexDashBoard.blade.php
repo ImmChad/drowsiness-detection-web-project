@@ -25,8 +25,8 @@
                     </div>
                 </div>
 
-                <div  class="row" style="margin-top:20px; height: 500px; margin: 0rem 2rem; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-                    <div class="col-md-12 " style=" height: 500px; width: 100%">
+                <div  class="row" style="margin-top:20px; height: 500px; margin: 0rem 2rem; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; overflow: auto">
+                    <div class="col-md-12" style="width: 100%">
                         <div  class="row" style="height: 100px;">
                             <div class="col-md-4" style="width: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;">
                                 <h5 class="page-title" style="color: #000000; font-weight: 700; font-size: 18px; ">
@@ -79,8 +79,8 @@
                                                     </span>
                                                 </div>
                                                 @foreach($childGroup->vehicles as $vehicle)
-                                                    <div class="item-result-search" data-id="{{$vehicle->id}}" data-type="taxi">
-                                                        <span class="label-item-search">Taxi</span>
+                                                    <div class="item-result-search" data-id="{{$vehicle->id}}" data-type="vehicle">
+                                                        <span class="label-item-search">Vehicle</span>
                                                         <span class="value-item-search">
                                                             {{$vehicle->vehicle_num}}
                                                         </span>
@@ -179,7 +179,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div  class="row" style="height: 300px;">
+                        <div  class="row">
                             <div class="col-md-12" style=" width: 100%; ">
                                 <!-- Icon Cards-->
                                 <div class="row">
@@ -265,6 +265,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="container mt-5">
+                        <h2>Drowsiness Detection Statistics</h2>
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+                                <canvas id="drowsinessEventsChart"></canvas>
+                                <div class="text-center mt-2">Number of Drowsiness Events Over Time</div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-md-6">
+                                <canvas id="drowsinessFrequencyChart"></canvas>
+                                <div class="text-center mt-2">Frequency of Drowsiness Events by Week</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -272,6 +287,63 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
     <script src="{{ asset('backend/js/dashboard/dashboard.js') }}"></script>
+    <script>
+        // Data for the charts
+        const drowsinessEventsData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'Number of Drowsiness Events',
+                data: [5, 10, 3, 8, 6, 7],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const drowsinessFrequencyData = {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+            datasets: [{
+                label: 'Frequency of Drowsiness Events',
+                data: [2, 5, 3, 4],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Configurations for the charts
+        const configEvents = {
+            type: 'bar',
+            data: drowsinessEventsData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        const configFrequency = {
+            type: 'line',
+            data: drowsinessFrequencyData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Render the charts
+        const ctxEvents = document.getElementById('drowsinessEventsChart').getContext('2d');
+        const drowsinessEventsChart = new Chart(ctxEvents, configEvents);
+
+        const ctxFrequency = document.getElementById('drowsinessFrequencyChart').getContext('2d');
+        const drowsinessFrequencyChart = new Chart(ctxFrequency, configFrequency);
+    </script>
+
     {{-- Css Dasshoard --}}
     <style>
         .list-group-item {

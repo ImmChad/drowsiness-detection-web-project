@@ -35,7 +35,7 @@ class DashBoardController extends Controller
 
     static function getDataCompany_withCompanyID($company_id)
     {
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->where(['company_id'=>$company_id,
                     ])
             ->get()->first();

@@ -32,7 +32,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getAllVehicleForPage(int $start, int $limit) : Collection
     {
-        return DB::table('taxi')
+        return DB::table('vehicle')
             ->offset($start)->limit($limit)
             ->get(
                 array(
@@ -54,7 +54,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getVehicleWithCompanyIDForPage(int $companyID, int $start, int $limit) : Collection
     {
-        return DB::table('taxi')
+        return DB::table('vehicle')
             ->where(['company_id' => $companyID])
             ->offset($start)->limit($limit)
             ->get([
@@ -73,7 +73,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getVehicleWithCompanyID(int $companyID) : Collection
     {
-        return DB::table('taxi')
+        return DB::table('vehicle')
             ->where(['company_id'=>$companyID])
             ->get([
                 'id',
@@ -91,7 +91,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getVehicleCompanyWithCompanyID(int $companyId) : Collection
     {
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->where('company_id', $companyId)
             ->get();
     }
@@ -101,7 +101,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getSubVehicleCompany() : Collection
     {
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->where('parent_id','>',0)
             ->get(
                 array(
@@ -119,7 +119,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getVehicleCompanyParent(int $parentId) : Collection
     {
-        return DB::table('taxi_company')
+        return DB::table('company')
             ->where(['company_id' => $parentId,'parent_id' => 0])
             ->get();
     }
@@ -131,7 +131,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getDataVehicleWithID($vehicleId) : stdClass
     {
-        return DB::table('taxi')
+        return DB::table('vehicle')
             ->where(['id'=>$vehicleId])
             ->get(
                 array(
@@ -155,7 +155,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getVehicleWithAnyParameter(int $vehicleId, String $vehicleNum, int $tabletId=-1, String $appId) : Collection|null
     {
-        return DB::table('taxi')
+        return DB::table('vehicle')
             ->where(function ($query) use ($vehicleNum,$tabletId,$appId)
             {
                 $query->orWhereRaw("LOWER(TRIM(`vehicle_num`)) = '{$vehicleNum}'")
@@ -181,7 +181,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getVehicleLikeVehicleNumber(String $vehicleNumber): Collection
     {
-        return DB::table('taxi')
+        return DB::table('vehicle')
             ->where('vehicle_num','LIKE',"%{$vehicleNumber}%")
             ->get(
                 array(
@@ -201,7 +201,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getVehicleWithVehicleNumber(String $vehicleNumber): stdClass|null
     {
-        return DB::table('taxi')
+        return DB::table('vehicle')
             ->where('vehicle_num',$vehicleNumber)
             ->first();
     }
@@ -212,7 +212,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     public function getVehicleIdWithCompanyId(int $companyId): Collection
     {
-        return DB::table('taxi')
+        return DB::table('vehicle')
                 ->where(['company_id' => $companyId])
                 ->get(['id']);
     }
@@ -223,7 +223,7 @@ class VehicleRepository extends BaseRepository implements IVehicleRepositoryInte
      */
     function getDataVehicleWithAppID(String $appId): mixed
     {
-        return DB::table('taxi')
+        return DB::table('vehicle')
             ->where(['app_id'=>$appId])->get()->first();
     }
 }
