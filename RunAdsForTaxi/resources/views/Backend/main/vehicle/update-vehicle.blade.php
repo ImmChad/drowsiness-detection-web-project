@@ -249,7 +249,7 @@
                                         {{$dataVehicle->dataGroupCompany->dataParent->company_group}}-{{$dataVehicle->dataGroupCompany->company_group}}
                                     </div>
                                     <div class="btn-drop-select">
-                                        <i class="fa-solid fa-vehicleet-down"></i>
+                                        <i class="fa-solid fa-caret-down"></i>
                                     </div>
                                     <div class="drop-list-select">
                                         @foreach($dataAllCompanyMinimum as $itemCompanyMinimum)
@@ -307,7 +307,7 @@
                                             15 minutes
                                         </div>
                                         <div class="btn-drop-select">
-                                            <i class="fa-solid fa-vehicleet-down"></i>
+                                            <i class="fa-solid fa-caret-down"></i>
                                         </div>
                                         <div class="drop-list-select">
                                             <div class="item-select-field" data-value="15">15 minutes</div>

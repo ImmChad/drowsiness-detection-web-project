@@ -5,7 +5,6 @@ use App\Http\Controllers\Backend\Vehicle\VehicleController;
 use App\Http\Controllers\Backend\Company\CompanyController;
 use App\Http\Controllers\Backend\DashBoard\DashBoardController;
 use App\Http\Controllers\Backend\VideoAds\VideoAdsController;
-use App\Http\Controllers\Backend\ViewAdsVideo\ViewAdsVideoController;
 use App\Http\Middleware\MiddlewareAdmin ;
 use Illuminate\Support\Facades\Route;
 
@@ -24,11 +23,6 @@ use Illuminate\Support\Facades\Route;
 // emulator
 Route::get('/emulator-mobile', function () {
     return view('emulatorMobile');
-});
-
-Route::group(['prefix' => '/api/view-ads-video'], function () {
-    Route::get('/get-exist-video', [ViewAdsVideoController::class, 'getAllVideoWithAppID']);
-    Route::post('/human-event', [ViewAdsVideoController::class, 'insertHumanEvent']);
 });
 
 

@@ -63,7 +63,7 @@
                                             15 minutes
                                         </div>
                                         <div class="btn-drop-select" style="display: flex; justify-content: center; align-items: center;">
-                                            <i class="fa-solid fa-vehicleet-down"></i>
+                                            <i class="fa-solid fa-caret-down"></i>
                                         </div>
                                         <div class="drop-list-select">
                                             <div class="item-select-update-field" data-value="15">15 minutes</div>
