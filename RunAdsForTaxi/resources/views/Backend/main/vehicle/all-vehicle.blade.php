@@ -138,7 +138,7 @@
                                 @endif
                             </div>
                             <div class="btn-drop-select">
-                                <i class="fa-solid fa-vehicleet-down"></i>
+                                <i class="fa-solid fa-caret-down"></i>
                             </div>
                             <div class="drop-list-select">
                                 <a href="{{"/vehicle/all-vehicle?page={$page}&afficher={$afficher}&filter_company_id=-1"}}">
