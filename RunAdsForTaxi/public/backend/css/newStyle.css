@@ -511,3 +511,7 @@
     background-color: #0e5904 ;
     border-radius: 6px;
 }
+
+.container-chart {
+    display: none
+}

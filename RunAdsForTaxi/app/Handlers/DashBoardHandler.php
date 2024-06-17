@@ -6,6 +6,8 @@ use App\Repositories\CompanyVideo\CompanyVideoRepository;
 use App\Repositories\Vehicle\VehicleRepository;
 use App\Repositories\VehicleCompany\VehicleCompanyRepository;
 use App\Repositories\ViewAdsVideo\ViewAdsVideoRepository;
+use DateTime;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -56,9 +58,9 @@ class DashBoardHandler
         $start_time = isset($_POST['start-time'])&&$_POST['start-time']!=-1?$_POST['start-time']:'00:00:00 01/01/1000';
         $end_time = isset($_POST['end-time'])&&$_POST['end-time']!=-1?$_POST['end-time']:'00:00:00 31/2/9999';
 
-        $viewAdsVideos =  self::getDataSearch($text_search,$start_time,$end_time);
+        $detectStatistics =  self::getDataSearch($text_search,$start_time,$end_time);
 
-        return self::loadDrowsinessDetectionToStatistics($viewAdsVideos);
+        return self::loadDrowsinessDetectionToStatistics($detectStatistics);
     }
 
     /**
@@ -66,9 +68,9 @@ class DashBoardHandler
      * @param String $start_time
      * @param String $end_time
      *
-     * @return array|Collection
+     * @return array
      */
-    function getDataSearch(String $text_search, String $start_time, String $end_time): array|Collection
+    function getDataSearch(String $text_search, String $start_time, String $end_time): array
     {
 
         $data_tmp = $this->vehicleRepository->getVehicleWithVehicleNumber($text_search);
@@ -109,9 +111,9 @@ class DashBoardHandler
      * @param int $vehicleId
      * @param String $start_time
      * @param String $end_time
-     * @return Collection
+     * @return array
      */
-    function getDataAllDrowsinessDetectionsVehicle_ID(int $vehicleId, String $start_time, String $end_time): Collection
+    function getDataAllDrowsinessDetectionsVehicle_ID(int $vehicleId, String $start_time, String $end_time): array
     {
         return $this->viewAdsVideoRepository->getDataAllDrowsinessDetectionsVehicle_ID($vehicleId, $start_time,$end_time);
     }
@@ -159,14 +161,54 @@ class DashBoardHandler
 
     /**
      * @param $detectStatistics
+     *
+     * @throws Exception
+     *
      * @return array
      */
     function loadDrowsinessDetectionToStatistics($detectStatistics): array
     {
         $total_drowsiness_detections = count($detectStatistics);
+        $drowsiness_frequency = [];
+
+        $uniqueVehicleIds = array_unique(array_column($detectStatistics, 'vehicle_id'));
+
+        $totalVehicles = count($uniqueVehicleIds);
+
+        if($total_drowsiness_detections > 0) {
+            $firstItem = reset($detectStatistics);
+            $lastItem = end($detectStatistics);
+
+            $start_time = new DateTime($firstItem->created_at);
+            $end_time = new DateTime($lastItem->created_at);
+
+            $interval = $start_time->diff($end_time);
+            $period = $interval->days;
+
+            $drowsiness_frequency = array_reduce($detectStatistics, function($carry, $item) use ($period) {
+                $date = new DateTime($item->created_at);
+
+                if ($period <= 1) {
+                    $formatted_date = $date->format('Y-m-d h:i:s');
+                } elseif ($period < 365) {
+                    $formatted_date = $date->format('Y-m-d');
+                } else {
+                    $formatted_date = $date->format('Y-m');
+                }
+
+                if (!isset($carry[$formatted_date])) {
+                    $carry[$formatted_date] = 0;
+                }
+                $carry[$formatted_date]++;
+                return $carry;
+            }, []);
+        }
+
 
         return [
-            'total_drowsiness_detections'=>$total_drowsiness_detections
+            'total_drowsiness_detections'=>$total_drowsiness_detections,
+            'total_vehicle_drowsiness_detections'=>$totalVehicles,
+            'drowsiness_frequency' => $drowsiness_frequency
         ];
     }
 }

@@ -22,15 +22,16 @@ class ViewAdsVideoRepository extends BaseRepository implements IViewAdsVideoRepo
      * @param int $vehicleId
      * @param String $start_time
      * @param String $end_time
-     * @return Collection
+     * @return array
      */
-    function getDataAllDrowsinessDetectionsVehicle_ID(int $vehicleId, String $start_time, String $end_time): Collection
+    function getDataAllDrowsinessDetectionsVehicle_ID(int $vehicleId, String $start_time, String $end_time): array
     {
         return DB::table('detect_statistics')
             ->where(['vehicle_id'=>$vehicleId])
             ->whereBetween('created_at',[DB::raw("STR_TO_DATE('{$start_time}','%H:%i:%s %d/%m/%Y')"),DB::raw("STR_TO_DATE('{$end_time}','%H:%i:%s %d/%m/%Y')")])
             ->orderBy('id','ASC')
-            ->get();
+            ->get()
+            ->toArray();
     }
 
     /**
