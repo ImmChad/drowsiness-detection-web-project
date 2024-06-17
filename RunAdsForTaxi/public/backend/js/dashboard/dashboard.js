@@ -413,20 +413,25 @@ function requestDataStatistics(
 }
 
 function updateCharts(newData) {
-    const frequencyLabels = Object.keys(newData.drowsiness_frequency);
-    const frequencyData = Object.values(newData.drowsiness_frequency);
+    if (newData.total_drowsiness_detections > 0) {
 
-    document.querySelector('.container-chart').style.display = 'block'
+        const frequencyLabels = Object.keys(newData.drowsiness_frequency);
+        const frequencyData = Object.values(newData.drowsiness_frequency);
 
-    drowsinessFrequencyChart.data.labels = frequencyLabels;
-    drowsinessFrequencyChart.data.datasets = [{
-        label: 'Frequency of Drowsiness Events',
-        data: frequencyData,
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
-    }];
-    drowsinessFrequencyChart.update();
+        document.querySelector('.container-chart').style.display = 'block'
+
+        drowsinessFrequencyChart.data.labels = frequencyLabels;
+        drowsinessFrequencyChart.data.datasets = [{
+            label: 'Frequency of Drowsiness Events',
+            data: frequencyData,
+            backgroundColor: 'rgb(124, 212, 140)',
+            borderColor: 'rgb(14, 89, 4)',
+            borderWidth: 1
+        }];
+        drowsinessFrequencyChart.update();
+    } else {
+        document.querySelector('.container-chart').style.display = 'none'
+    }
 }
 
 //

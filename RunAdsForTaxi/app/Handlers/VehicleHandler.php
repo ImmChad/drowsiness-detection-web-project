@@ -240,10 +240,11 @@ class VehicleHandler
     }
 
     /**
-     * @param int $vehicleNum
+     * @param string $vehicleNum
+     *
      * @return bool
      */
-    function checkExistVehicleForAdd(int $vehicleNum = -1): bool
+    function checkExistVehicleForAdd(string $vehicleNum): bool
     {
         $dataVehicle = DB::table('vehicle')
             ->whereRaw("LOWER(TRIM(`vehicle_num`)) = '{$vehicleNum}'")

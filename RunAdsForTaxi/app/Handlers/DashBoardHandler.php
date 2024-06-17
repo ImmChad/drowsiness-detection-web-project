@@ -185,11 +185,15 @@ class DashBoardHandler
             $interval = $start_time->diff($end_time);
             $period = $interval->days;
 
-            $drowsiness_frequency = array_reduce($detectStatistics, function($carry, $item) use ($period) {
+            $drowsiness_frequency = array_reduce($detectStatistics, function($carry, $item) use ($period, $firstItem, $lastItem) {
                 $date = new DateTime($item->created_at);
 
                 if ($period <= 1) {
-                    $formatted_date = $date->format('Y-m-d h:i:s');
+                    if ($item === $firstItem || $item === $lastItem) {
+                        $formatted_date = $date->format('Y-m-d h:i');
+                    } else {
+                        $formatted_date = $date->format('h:i');
+                    }
                 } elseif ($period < 365) {
                     $formatted_date = $date->format('Y-m-d');
                 } else {
