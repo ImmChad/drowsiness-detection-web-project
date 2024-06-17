@@ -96,7 +96,7 @@
                             <div class="col-md-8" style="width: 100%; display: flex; justify-content: center; align-items: center;">
                                 <div class="input-ads" style="height: 40px; width: 100%; margin-top: 0px; margin: 0rem 2rem; display: flex;">
                                     <div class="col-md-1 previous-date" style="display: flex; justify-content: center; align-items: center; font-size: 25px;">
-                                        <i class="fa-solid fa-vehicleet-left"></i>
+                                        <i class="fa-solid fa-caret-left"></i>
                                     </div>
                                     <div class="col-md-10" style="display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: 700;">
                                         <span class="choose-time-to-filter active"  get_time="1" start_date="<?php
@@ -174,7 +174,7 @@
                                         </span>
                                     </div>
                                     <div class="col-md-1 next-date" style="display: flex; justify-content: center; align-items: center; font-size: 25px;">
-                                        <i class="fa-solid fa-vehicleet-right"></i>
+                                        <i class="fa-solid fa-caret-right"></i>
                                     </div>
                                 </div>
                             </div>
@@ -203,80 +203,22 @@
                                                     <i class="fa-solid fa-user-shield"></i>
                                                 </div>
                                                 <div class="mr-5" style="display: flex; flex-direction: column;">
-                                                    <span class="result-time" style="color: black; font-size: 50px; font-weight: 600;">0h</span>
-                                                    <span style="color: #0e5904; font-size: 20px; font-weight: 800;">Continuous driving time</span>
+                                                    <span class="result-time" style="color: black; font-size: 50px; font-weight: 600;">0</span>
+                                                    <span style="color: #0e5904; font-size: 20px; font-weight: 800;">Number of Vehicles with Drowsy Drivers</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-{{--                                    <div class="col-xl-3 col-sm-6 mb-3">--}}
-{{--                                        <div class="card text-white bg-primary o-hidden h-100" style="  background-color: #7cd48c !important; border-radius: 20px; overflow: hidden;">--}}
-{{--                                            <div class="card-body">--}}
-{{--                                                <div class="card-body-icon">--}}
-{{--                                                    <i class="fa-solid fa-power-off"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="mr-5" style="display: flex; flex-direction: column;">--}}
-{{--                                                    <span class="result-time" style="color: black; font-size: 50px; font-weight: 600;">0</span>--}}
-{{--                                                    <span style="color: #0e5904; font-size: 20px; font-weight: 800;">Car run time</span>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-xl-3 col-sm-6 mb-3">--}}
-{{--                                        <div class="card text-white bg-primary o-hidden h-100" style="  background-color: #7cd48c !important;  border-radius: 20px; overflow: hidden;">--}}
-{{--                                            <div class="card-body">--}}
-{{--                                                <div class="card-body-icon">--}}
-{{--                                                    <i class="fa-regular fa-circle-play"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="mr-5" style="display: flex; flex-direction: column;">--}}
-{{--                                                    <span class="result-time" style="color: black; font-size: 50px; font-weight: 600;">0h</span>--}}
-{{--                                                    <span style="color: #0e5904; font-size: 20px; font-weight: 800;">Ads Run Time</span>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-xl-3 col-sm-6 mb-3">--}}
-{{--                                        <div class="card text-white bg-primary o-hidden h-100" style="  background-color: #7cd48c !important; border-radius: 20px; overflow: hidden;">--}}
-{{--                                            <div class="card-body">--}}
-{{--                                                <div class="card-body-icon">--}}
-{{--                                                    <i class="fa-regular fa-circle-pause"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="mr-5" style="display: flex; flex-direction: column;">--}}
-{{--                                                    <span class="result-time" style="color: black; font-size: 50px; font-weight: 600;">0h</span>--}}
-{{--                                                    <span style="color: #0e5904; font-size: 20px; font-weight: 800;">Ads Pause Time</span>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-xl-3 col-sm-6 mb-3">--}}
-{{--                                        <div class="card text-white bg-primary o-hidden h-100" style="  background-color: #7cd48c !important; border-radius: 20px; overflow: hidden;">--}}
-{{--                                            <div class="card-body">--}}
-{{--                                                <div class="card-body-icon">--}}
-{{--                                                    <i class="fa-regular fa-circle-stop"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="mr-5" style="display: flex; flex-direction: column;">--}}
-{{--                                                    <span class="result-time" style="color: black; font-size: 50px; font-weight: 600;">0h</span>--}}
-{{--                                                    <span style="color: #0e5904; font-size: 20px; font-weight: 800;">App Stop Time</span>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="container mt-5">
+                    <div class="container container-chart mt-5">
                         <h2>Drowsiness Detection Statistics</h2>
-                        <div class="row justify-content-center">
-                            <div class="col-md-6">
-                                <canvas id="drowsinessEventsChart"></canvas>
-                                <div class="text-center mt-2">Number of Drowsiness Events Over Time</div>
-                            </div>
-                        </div>
                         <div class="row justify-content-center mt-4">
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <canvas id="drowsinessFrequencyChart"></canvas>
-                                <div class="text-center mt-2">Frequency of Drowsiness Events by Week</div>
+                                <div class="text-center mt-2" style="color: #0e5904;">Frequency of Drowsiness Events by Week</div>
                             </div>
                         </div>
                     </div>
@@ -287,63 +229,6 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
     <script src="{{ asset('backend/js/dashboard/dashboard.js') }}"></script>
-    <script>
-        // Data for the charts
-        const drowsinessEventsData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-            datasets: [{
-                label: 'Number of Drowsiness Events',
-                data: [5, 10, 3, 8, 6, 7],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        const drowsinessFrequencyData = {
-            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-            datasets: [{
-                label: 'Frequency of Drowsiness Events',
-                data: [2, 5, 3, 4],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        // Configurations for the charts
-        const configEvents = {
-            type: 'bar',
-            data: drowsinessEventsData,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        };
-
-        const configFrequency = {
-            type: 'line',
-            data: drowsinessFrequencyData,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        };
-
-        // Render the charts
-        const ctxEvents = document.getElementById('drowsinessEventsChart').getContext('2d');
-        const drowsinessEventsChart = new Chart(ctxEvents, configEvents);
-
-        const ctxFrequency = document.getElementById('drowsinessFrequencyChart').getContext('2d');
-        const drowsinessFrequencyChart = new Chart(ctxFrequency, configFrequency);
-    </script>
-
     {{-- Css Dasshoard --}}
     <style>
         .list-group-item {

@@ -1,4 +1,17 @@
+const ctxFrequency = document.getElementById('drowsinessFrequencyChart').getContext('2d');
+const configFrequency = {
+    type: 'line',
+    data: [],
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+};
 
+let drowsinessFrequencyChart = new Chart(ctxFrequency, configFrequency);
 
 // function choose time
 let chooseTime = document.querySelectorAll('.choose-time');
@@ -330,7 +343,6 @@ function loadEventBtnSubmitDashboard()
         let itemDate = document.querySelector('.choose-time-to-filter.active');
         let start_date = itemDate.getAttribute('start_date');
         let end_date = itemDate.getAttribute('end_date');
-        console.log(start_date + ", " + end_date);
         event.preventDefault()
         requestDataStatistics(
             {
@@ -383,14 +395,6 @@ function requestDataStatistics(
         end_time,
     }={}
 ) {
-    // const [time, date] = start_time.split(' ');
-    // const [hour, minute, second] = time.split(':');
-    // const [day, month, year] = date.split('/');
-
-    // const dateObject = new Date(year, month - 1, day, hour, minute, second);
-    // console.log(dateObject);
-    // var last_time = dateObject.setDate(dateObject.getDate()-1);
-    // console.log(last_time.toString);
     const form = new FormData();
     form.append('text-search',text_search)
     form.append('start-time',start_time)
@@ -401,13 +405,28 @@ function requestDataStatistics(
         body:form
     }).then(res=>res.json()).then(result=>{
         let resultTime = document.querySelectorAll('.result-time');
-        resultTime[0].textContent = result.total_play_video;
-        resultTime[1].textContent = convertTime_to_Text(result.total_length_time_run);
-        resultTime[2].textContent = convertTime_to_Text(result.total_length_time_pause_image);
-        resultTime[3].textContent = convertTime_to_Text(result.total_length_time_stop_app);
+        resultTime[0].textContent = result.total_drowsiness_detections;
+        resultTime[1].textContent = result.total_vehicle_drowsiness_detections;
 
-
+        updateCharts(result)
     })
+}
+
+function updateCharts(newData) {
+    const frequencyLabels = Object.keys(newData.drowsiness_frequency);
+    const frequencyData = Object.values(newData.drowsiness_frequency);
+
+    document.querySelector('.container-chart').style.display = 'block'
+
+    drowsinessFrequencyChart.data.labels = frequencyLabels;
+    drowsinessFrequencyChart.data.datasets = [{
+        label: 'Frequency of Drowsiness Events',
+        data: frequencyData,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+    }];
+    drowsinessFrequencyChart.update();
 }
 
 //
