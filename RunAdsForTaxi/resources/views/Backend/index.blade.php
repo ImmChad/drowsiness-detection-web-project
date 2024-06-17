@@ -9,7 +9,7 @@
 
 
     <!-- Set Icon Logo -->
-    <link rel="icon" href="{{asset('uploads/images/logo-brand.png')}}">
+    <link rel="icon" href="{{asset('uploads/images/drowsines-removebg-logo.png')}}">
 
     <!-- Use bootstrap 4.0.0 -->
     <!-- Use font awesome 6.3.0 -->
@@ -80,7 +80,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top navbar-run-ads" id="mainNav">
         {{-- <a class="navbar-brand" href="#">LIFE SOUND</a> --}}
-        <h1 class="purples"><img class="logo_vehicle_run_ads" src="{{asset('uploads/images/logo-brand.png')}}" alt="" srcset=""></h1>
+        <h1 class="purples"><img class="logo_vehicle_run_ads" src="{{asset('uploads/images/drowsines-removebg-logo.png')}}" alt="" srcset=""></h1>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto" style="display: flex; justify-content: center; align-items: center">
                 <li class="nav-item section-search-search-vehicle">

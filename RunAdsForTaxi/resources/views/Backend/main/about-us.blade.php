@@ -4,7 +4,7 @@
 
     <div class="aboutAuthor">
         <div class="K2_bio">
-            <img src="{{asset('uploads/images/logo-brand.png')}}" alt="">
+            <img src="{{asset('uploads/images/drowsines-removebg-logo.png')}}" alt="">
 
             <h2>Safe Driver</h2>
             <div class="h-divider">

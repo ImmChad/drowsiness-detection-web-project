@@ -218,12 +218,10 @@
 
 
 .purples {
-    font-family: monospace;
+    font-family: "Rocher";
     text-align: center;
     font-size: 30px;
     font-palette: --Reds;
-    font-weight: bold;
-    color: #0e5904;
 }
 
 

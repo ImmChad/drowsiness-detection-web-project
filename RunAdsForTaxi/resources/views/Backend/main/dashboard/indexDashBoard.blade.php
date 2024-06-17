@@ -17,7 +17,7 @@
                     </div>
                     <div style="display: flex; align-items: center;">
                         <img style="object-fit: cover; border-radius: 0px" width="50px" height="50px"
-                        src="{{asset('uploads/images/logo-brand.png')}}"
+                        src="{{asset('uploads/images/drowsines-removebg-logo.png')}}"
                         alt="">
                         <h4 class="page-title" style="color: #000000; font-weight: 700; ">
                             Cooperate with

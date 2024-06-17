@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <!-- Set Icon Logo -->
-    <link rel="icon" href="{{ asset('uploads/images/logo-brand.png') }}">
+    <link rel="icon" href="{{ asset('uploads/images/drowsines-removebg-logo.png') }}">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/dataTables.bootstrap4.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'>
